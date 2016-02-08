@@ -2587,13 +2587,13 @@ module.exports = (function() {
      * @throws {RangeError} If `capacity < 0`
      * @expose
      */
-    ByteBufferPrototype.resize = function(capacity) {
+    ByteBufferPrototype.resize = function (capacity) {
         if (!this.noAssert) {
             if (typeof capacity !== 'number' || capacity % 1 !== 0)
                 throw TypeError("Illegal capacity: "+capacity+" (not an integer)");
             capacity |= 0;
             if (capacity < 0)
-                throw RangeError("Illegal capacity: 0 <= "+capacity);
+                throw RangeError("Illegal capacity: 0 <= " + capacity);
         }
         if (this.buffer.length < capacity) {
             var buffer = new Buffer(capacity);

@@ -290,6 +290,14 @@ function makeSuite(ByteBuffer) {
         bb.fill(0, 0, 2);
         test.equal(bb.capacity(), 2);
         test.equal(bb.toDebug(), "00|00");
+
+        bb = new ByteBuffer(0);
+        bb.offset = 1;
+        bb.resize(1);
+        bb.fill(0, 0, 1);
+        test.equal(bb.capacity(), 1);
+        test.equal(bb.toDebug(), ">00<");
+
         test.done();
     };
 

@@ -2739,18 +2739,18 @@
      * @throws {RangeError} If `capacity < 0`
      * @expose
      */
-    ByteBufferPrototype.resize = function(capacity) {
+    ByteBufferPrototype.resize = function (capacity) {
         if (!this.noAssert) {
             if (typeof capacity !== 'number' || capacity % 1 !== 0)
                 throw TypeError("Illegal capacity: "+capacity+" (not an integer)");
             capacity |= 0;
             if (capacity < 0)
-                throw RangeError("Illegal capacity: 0 <= "+capacity);
+                throw RangeError("Illegal capacity: 0 <= " + capacity);
         }
         if (this.buffer.byteLength < capacity) {
             var buffer = new ArrayBuffer(capacity);
             var view = new Uint8Array(buffer);
-            view.set(this.view);
+            if (this.view) view.set(this.view);
             this.buffer = buffer;
             this.view = view;
         }
